@@ -6,7 +6,10 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-# Descargar dependencias (aprovechando la caché de Docker)
+# Dar permisos de ejecución a mvnw
+RUN chmod +x mvnw
+
+# Descargar dependencias
 RUN ./mvnw dependency:go-offline
 
 # Copiar el código fuente y compilar
